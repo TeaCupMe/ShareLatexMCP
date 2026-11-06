@@ -1,0 +1,45 @@
+[project]
+name = "sharelatex-mcp"
+version = "0.1.0"
+description = "STDIO MCP tools for self-hosted ShareLaTeX projects"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["mcp", "sharelatex", "overleaf", "latex"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Text Processing :: Markup :: LaTeX",
+]
+authors = [
+    { name = "Aleksey Gilenko", email = "alesha@gilenko.net" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "mcp==2.3.0",
+    "mcp-types==2.3.0",
+    "pyoverleaf==0.1.8",
+    "requests>=2.32,<3",
+]
+
+[project.urls]
+Homepage = "https://github.com/TeaCupMe/ShareLatexMCP"
+Repository = "https://github.com/TeaCupMe/ShareLatexMCP"
+Issues = "https://github.com/TeaCupMe/ShareLatexMCP/issues"
+
+[project.scripts]
+sharelatex-mcp = "sharelatex_mcp:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+source-include = ["server.py", "tests/**", "scripts/**", "examples/**", "docs/**", "CHANGELOG.md", "CONTRIBUTING.md", "SECURITY.md", "uv.lock"]
+source-exclude = [".codex/**", ".cursor/**", ".env", ".env.*", ".venv*/**", "**/__pycache__/**", "**/*.pyc"]

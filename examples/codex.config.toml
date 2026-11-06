@@ -1,0 +1,8 @@
+# Replace the wheel path and placeholders, and keep the edited copy private.
+[mcp_servers.sharelatex]
+command = "uvx"
+args = ["--from", "/absolute/path/sharelatex_mcp-0.1.0-py3-none-any.whl", "sharelatex-mcp"]
+
+[mcp_servers.sharelatex.env]
+OVERLEAF_URL = "https://latex.example.org"
+OVERLEAF_COOKIE = "overleaf.sid=REPLACE_WITH_YOUR_SESSION"

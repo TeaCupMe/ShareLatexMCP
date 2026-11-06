@@ -1,0 +1,34 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Session cookie for the local MCP server
+.cursor/mcp.json
+
+# Isolated installation verification
+.venv-check/
+
+# Private client configuration and credentials
+.codex/
+.cursor/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Virtual environments and local checks
+.venv*/
+.release-check/
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+Thumbs.db

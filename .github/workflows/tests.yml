@@ -1,0 +1,32 @@
+name: tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ['3.11', '3.12', '3.13']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.23'
+      - run: uv sync --locked --python ${{ matrix.python }}
+      - run: uv run --locked python -m unittest discover -s tests -v
+      - run: uv build
+      - run: uv run --locked python scripts/check_release.py
+      - name: Install wheel into isolated environment
+        shell: bash
+        run: |
+          uv venv .release-check --python ${{ matrix.python }}
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            py=.release-check/Scripts/python.exe
+          else
+            py=.release-check/bin/python
+          fi
+          uv pip install --python "$py" dist/*.whl
+          "$py" -I scripts/check_install.py
